@@ -32,6 +32,12 @@ include('header.php');
                 </div>
               </div>
               <div class="control-group">
+                <label class="control-label">Town/City</label>
+                <div class="controls">
+                  <input type="text" name="town" class="form-control" required="" >                  
+                </div>
+              </div>
+              <div class="control-group">
                 <label class="control-label">Phone</label>
                 <div class="controls">
                   <input type="text" name="tel" required="" class="form-control">                  
@@ -61,14 +67,14 @@ include('header.php');
               </div>
 
               <div class="control-group">
-                <label class="control-label">Date Added</label>
+                <label class="control-label">Date Of Birth</label>
                 <div class="controls">
                   <input type="date" name="date" id="date">
                 </div>
               </div>            
              </div>
                <div class="form-actions">
-                <button type="submit" value="Validate" class="btn btn-success">Validate</button>
+                <button type="submit" value="Validate" class="btn btn-success">Submit</button>
                 </div>
             </form>
           </div>
