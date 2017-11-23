@@ -29,12 +29,22 @@ if ($_GET['action']=="addpatient") {
 
 	echo "<script>location.replace('patient_medical_conditions.php')</script>";
 }elseif ($_GET[]=="addpatientexam") {
-$date=$_POST['date'];
-$patientid=$_REQUEST['patientid'];
-$staffid=$_POST['staffid'];
-$subjectiverx=$_POST['subjectiverx'];
-$notes=$_POST['notes'];
-$query="INSERT INTO patient_exams(date,patientid,staffid,subjectiverx,notes)VALUES";
-mysql_query($query);
+	$date=$_POST['date'];
+	$patientid=$_REQUEST['patientid'];
+	$staffid=$_POST['staffid'];
+	$subjectiverx=$_POST['subjectiverx'];
+	$notes=$_POST['notes'];
+	$query="INSERT INTO patient_exams(date,patientid,staffid,subjectiverx,notes)VALUES('$date','$patientid','$staffid','$subjectiverx','$notes')";
+	mysql_query($query);
 
+	echo "<script>location.replace('patient_examinitions.php')</script>";
+
+
+}elseif ($_GET['action']=="addcontactlens"){
+	$date=$_POST['date'];
+	$patientid=$_REQUEST['patientid'];
+	$staffid=$_POST['staffid'];
+	$presciption=$_POST['prescription'];
+	$notes=$_POST['notes'];
+}
 }
