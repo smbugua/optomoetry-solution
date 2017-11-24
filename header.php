@@ -107,7 +107,7 @@ echo <<<HeaderFunction
         <li><a href="cashflow.php">Cash Flow</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important">5</span></a>
+    <!--li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important">5</span></a>
       <ul>
         <li><a href="#">Dashboard</a></li>
         <li><a href="labwizard.php">Full Exam</a></li>
@@ -116,7 +116,7 @@ echo <<<HeaderFunction
         <li><a href="labwizard.php">Contact Lens After Care</a></li>
         <li><a href="labwizard.php">External RX</a></li>
       </ul>
-    </li>
+    </li-->
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Inventory</span> <span class="label label-important">4</span></a>
       <ul>
         <li><a href="additem.php">Add Product Item</a></li>
