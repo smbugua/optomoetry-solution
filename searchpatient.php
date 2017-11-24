@@ -37,8 +37,7 @@ $result=mysql_query($query);
               </div>
           
               <div class="form-actions">
-                <input id="back" class="btn btn-primary" type="reset" value="Back" />
-                <input id="next" class="btn btn-primary" type="submit" value="Next" />
+                <button class="btn btn-primary btn-xs" type="submit">Search</button>
                 <div id="status"></div>
               </div>
               <div id="submitted"></div>
