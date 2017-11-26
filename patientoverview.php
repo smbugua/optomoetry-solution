@@ -118,3 +118,9 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
 
 </body>
 </html>
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.tables.js"></script>
