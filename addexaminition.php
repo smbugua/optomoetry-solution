@@ -16,7 +16,7 @@ $id=$_REQUEST['id']
             <h5>Patient Details</h5>
           </div>
           <div class="widget-content nopadding">
-            <form id="form-wizard" action="patientclass.php?patientid=<?php echo $id?>&&action=addpatientexam" class="form-horizontal" method="post">
+            <form id="form-wizard" action="patientclass.php?action=addpatientexam&&patientid=<?php echo $id?>" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                 <div class="control-group">
                   <label class="control-label">Eye</label>

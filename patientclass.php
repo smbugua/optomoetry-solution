@@ -28,6 +28,7 @@ if ($_GET['action']=="aadpatient") {
 	mysql_query("INSERT INTO medical(patientid,conditionid,notes,year)values('$patientid','$conditionid','$notes','$year')");
 
 	echo "<script>location.replace('patient_medical_conditions.php')</script>";
+
 }elseif ($_GET['action']=="addpatientexam") {
 	$date=$_POST['date'];
 	$patientid=$_REQUEST['patientid'];
@@ -37,6 +38,9 @@ if ($_GET['action']=="aadpatient") {
 	$notes=$_POST['notes'];
 	$query="INSERT INTO patient_exams(dateadded,patientid,staffid,subjectiverx,notes,eye)VALUES('$date','$patientid','$staffid','$subjectiverx','$notes','$eye')";
 	mysql_query($query);
+	if (mysql_errno()) {
+		echo mysql_error();
+	}
 	echo "<script>alert('Successfully Added!')</script>";
 	echo "<script>location.replace('patientoverview.php?id=$patientid')</script>";
 
