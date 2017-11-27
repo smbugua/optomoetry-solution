@@ -14,7 +14,7 @@ $result=mysql_query($query);
 
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Invoice Details</h5>
+            <h5>Receipts Details</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
