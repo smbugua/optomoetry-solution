@@ -98,6 +98,12 @@ echo <<<HeaderFunction
         <li><a href="searchpatient.php">Search Pateient</a></li>
       </ul>
     </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Reception</span> <span class="label label-important"></span></a>
+      <ul>
+        <li><a href="appointments.php">Apppointments</a></li>
+        <li><a href="recallls.php">Recalls</a></li>
+      </ul>
+    </li>
    <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Dispensing</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="searchpatient.php">Add Invoice</a></li>
@@ -107,16 +113,6 @@ echo <<<HeaderFunction
         <li><a href="receipts.php">Receipts</a></li>
       </ul>
     </li>
-    <!--li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important"></span></a>
-      <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="labwizard.php">Full Exam</a></li>
-        <li><a href="labwizard.php">Post Op Exam</a></li>
-        <li><a href="labwizard.php">Contact Lens Exam</a></li>
-        <li><a href="labwizard.php">Contact Lens After Care</a></li>
-        <li><a href="labwizard.php">External RX</a></li>
-      </ul>
-    </li-->
     <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Inventory</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="products.php">Products</a></li>
