@@ -1,10 +1,12 @@
 <?php
 include('header.php');
+$user=$_SESSION['user'];
+
 $id=$_REQUEST['id']
 ?>
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="patients.php">Patients</a> <a href="#" class="current">Examinition Form</a> </div>
-    <h1>Patient Lookup</h1>
+    <h1>Patient Examinition</h1>
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
@@ -14,25 +16,36 @@ $id=$_REQUEST['id']
             <h5>Patient Details</h5>
           </div>
           <div class="widget-content nopadding">
-            <form id="form-wizard" action="patientclass.php?patientid=<?php echo $id?>" class="form-horizontal" method="post">
+            <form id="form-wizard" action="patientclass.php?patientid=<?php echo $id?>&&action=addpatientexam" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                 <div class="control-group">
-                  <label class="control-label">Phone Number</label>
+                  <label class="control-label">Eye</label>
                   <div class="controls">
-                    <input id="username" type="text" name="tel" />
+                  <select name="eye" class="form-control">
+                    <option value="RIGHT"> Right</option>
+                    <option value="LEFT"> Left</option>
+                  </select>
                   </div>
-                </div>
-                  <div class="control-group">
-                  <label class="control-label">Or</label>
-                  
-                </div>
+                </div>            
                 <div class="control-group">
-                  <label class="control-label">Id No</label>
+                  <label class="control-label">Subjective RX</label>
                   <div class="controls">
                     <input id="text" type="text" name="idno" />
                   </div>
                 </div>
-              
+                <div class="control-group">
+                  <label class="control-label">Notes</label>
+                  <div class="controls">
+                    <textarea name="notes" cols="7" rows="5"></textarea>
+                  </div>
+                </div>
+ 
+                <div class="control-group">
+                  <label class="control-label">Staff Assigned</label>
+                  <div class="controls">
+                    <input id="text" type="text" readonly="" name="idno" value="<?php echo $user?>" />
+                  </div>
+                </div>     
               </div>
           
               <div class="form-actions">
