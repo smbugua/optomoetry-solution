@@ -1,10 +1,9 @@
 <?php
 include('header.php');
-$query="SELECT * from patients order by  name asc";
-$result=mysql_query($query);
+$id=$_REQUEST['id']
 ?>
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="patients.php">Patients</a> <a href="#" class="current">Search Form</a> </div>
+    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="patients.php">Patients</a> <a href="#" class="current">Examinition Form</a> </div>
     <h1>Patient Lookup</h1>
   </div>
   <div class="container-fluid"><hr>
@@ -15,7 +14,7 @@ $result=mysql_query($query);
             <h5>Patient Details</h5>
           </div>
           <div class="widget-content nopadding">
-            <form id="form-wizard" action="searchresults.php" class="form-horizontal" method="post">
+            <form id="form-wizard" action="patientclass.php?patientid=<?php echo $id?>" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                 <div class="control-group">
                   <label class="control-label">Phone Number</label>
@@ -37,7 +36,7 @@ $result=mysql_query($query);
               </div>
           
               <div class="form-actions">
-                <button class="btn btn-primary btn-xs" type="submit">Search</button>
+                <button class="btn btn-primary btn-xs" type="submit">Submit</button>
                 <div id="status"></div>
               </div>
               <div id="submitted"></div>

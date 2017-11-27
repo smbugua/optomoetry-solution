@@ -1,9 +1,7 @@
 <?php
 include('header.php');
-$idno=$_POST['idno'];
-$phone=$_POST['tel'];
-$p=mysql_fetch_array(mysql_query("SELECT * FROM patients where idno='$idno' or tel='$phone'"));
-$id=$p['id'];
+$id=$_REQUEST['id'];
+$p=mysql_fetch_array(mysql_query("SELECT name from patients where id='$id'"));
 $exams=mysql_query("SELECT * FROM patient_exams where patientid='$id'");
 $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
 ?>
@@ -13,6 +11,7 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
   </div>
   <div class="container-fluid">
     <hr>
+    <h4><?php echo $p['name']?></h4>
     <div class="row-fluid">
       <div class="span12">
 
@@ -21,7 +20,7 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Patient Examinitions</h5>
 
-            <a href="addexam.php" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Examinition Record</i></a>
+            <a href="addexaminition.php?id=<?php echo $id?>" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Examinition Record</i></a>
           </div>
 
           <div class="widget-content nopadding">
@@ -68,7 +67,7 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Patient Conact Lens</h5>
 
-            <a href="addcotactlens.php" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Contact Lens Record</i></a>
+            <a href="addcontactlens.php" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Contact Lens Record</i></a>
           </div>
 
           <div class="widget-content nopadding">
@@ -109,6 +108,10 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
         </div>
       </div>
     </div>
+    <!-- Modals -->
+
+
+
   </div>
 
 <?php include('footer.php');?>

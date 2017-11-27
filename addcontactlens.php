@@ -15,7 +15,7 @@ $result=mysql_query($query);
             <h5>Patient Details</h5>
           </div>
           <div class="widget-content nopadding">
-            <form id="form-wizard" action="searchresults.php" class="form-horizontal" method="post">
+            <form id="form-wizard" action="patientoverview.php" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                 <div class="control-group">
                   <label class="control-label">Phone Number</label>
