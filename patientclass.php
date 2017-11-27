@@ -74,6 +74,7 @@ if ($_GET['action']=="aadpatient") {
 }elseif ($_GET['action']=="addbrand") {	
 	$name=$_POST['name'];
 	mysql_query("INSERT INTO brand(name)values('$name')");
+	echo "<script>alert('Successfully Added!')</script>";
 	echo "<script>location.replace('brands.php')</script>";
 }elseif ($_GET['action']=="stockin") {
 	//RECORD STOCK MOVE
