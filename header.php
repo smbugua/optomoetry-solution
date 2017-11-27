@@ -91,14 +91,14 @@ echo <<<HeaderFunction
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li-->
-    <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Patients</span> <span class="label label-important">3</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Patients</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="patients.php">Patient Lists</a></li>
         <li><a href="addpatient.php">Add Patient</a></li>
         <li><a href="searchpatient.php">Search Pateient</a></li>
       </ul>
     </li>
-   <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Dispensing</span> <span class="label label-important">4</span></a>
+   <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Dispensing</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="searchpatient.php">Add Invoice</a></li>
         <li><a href="unpaidinvoices.php">UnPaid Invoices</a></li>
@@ -107,7 +107,7 @@ echo <<<HeaderFunction
         <li><a href="receipts.php">Receipts</a></li>
       </ul>
     </li>
-    <!--li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important">5</span></a>
+    <!--li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="#">Dashboard</a></li>
         <li><a href="labwizard.php">Full Exam</a></li>
@@ -117,13 +117,13 @@ echo <<<HeaderFunction
         <li><a href="labwizard.php">External RX</a></li>
       </ul>
     </li-->
-    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Inventory</span> <span class="label label-important">4</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Inventory</span> <span class="label label-important"></span></a>
       <ul>
-        <li><a href="additem.php">Add Product Item</a></li>
+        <li><a href="products.php">Products</a></li>
         <li><a href="stocklevels.php">Stock</a></li>
         <li><a href="receivestock.php">Receive Stock</a></li>
-        <li><a href="warehouses.php">Warehouses</a></li>
-        <li><a href="transfers.php">Warehouse Transfers</a></li>
+        <li><a href="itemtypes.php">Product Types</a></li>
+        <li><a href="brands.php">Brands</a></li>
       </ul>
     </li>
     <li class="content"> <span>Monthly Bandwidth Transfer</span>

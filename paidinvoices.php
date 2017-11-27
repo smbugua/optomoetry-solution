@@ -1,11 +1,11 @@
 <?php
 include('header.php');
-$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where status='0' order by  inv.dateadded  asc";
+$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where status='2' order by  inv.dateadded  asc";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Invoices</a> </div>
-    <h1>Unpaid Invoices Details</h1>
+    <h1>Paid Invoices Details</h1>
   </div>
   <div class="container-fluid">
     <hr>
