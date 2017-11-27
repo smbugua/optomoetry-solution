@@ -79,11 +79,11 @@ if ($_GET['action']=="aadpatient") {
 	echo "<script>location.replace('brands.php')</script>";
 }elseif ($_GET['action']=="stockin") {
 	//RECORD STOCK MOVE
-	$id=$_REQUEST['productid'];
-	$stock=$_POST['stock'];
+	$id=$_REQUEST['id'];
+	$stock=$_POST['stockin'];
 	$cost=$_POST['cost'];
 	$price=$_POST['price'];
-	$date=$_POST['date'];
+	$date=$_POST['datea'];
 	mysql_query("INSERT INTO productstockmoves(productid,stockmove,type)values('$id','$stock','0')");
 	//UPDATE CURRENT STOCK
 	/*
@@ -91,17 +91,18 @@ if ($_GET['action']=="aadpatient") {
 	2.add new stock
 	3.update table records
 	*/
-	$query="SELECT ps.totalstock as tot,psm.id as id from productstockmoves psm inner join productstock ps on psm.productid=ps.productid where productid='$id' order by psm.daterecorded desc ";
+	$query="SELECT ps.totalstock as tot,psm.id as id from productstockmoves psm inner join productstock ps on psm.productid=ps.productid where psm.productid='$id' order by psm.daterecorded desc ";
 	$row=mysql_fetch_array(mysql_query($query));
 	$tot=$row['tot'];
 	$psmid=$row['id'];
-	$newstock=$stockk+$tot;
+	$newstock=$stock+$tot;
 	//update new stock levels
 	mysql_query("UPDATE productstock set totalstock ='$newstock' where productid='$id'");
 	//record new prices in stock price
 	mysql_query("INSERT INTO stockprice(productid,stockid,cost,price,dateadded)values('$id','$psmid','$cost','$price','$date')");
+	echo "<script>alert('Successfully Added!')</script>";
 
-	echo "<script>location.replace('productstock.php')</script>";
+	//echo "<script>location.replace('productstock.php')</script>";
 }elseif ($_GET['action']=="stockout") {
 	$id=$_REQUEST['productid'];
 	$stock=$_POST['stock'];

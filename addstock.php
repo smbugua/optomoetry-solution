@@ -26,7 +26,7 @@ $no=mysql_num_rows($res);
             <h5>Product Details</h5>
           </div>
           <div class="widget-content nopadding">
-            <form id="form-wizard" action="patientclass.php?action=addstock&&id=<?php echo $id?>" class="form-horizontal" method="post">
+            <form id="form-wizard" action="patientclass.php?action=stockin&&id=<?php echo $id?>" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                          
                 <div class="control-group">
@@ -71,7 +71,25 @@ $no=mysql_num_rows($res);
                  <div class="control-group">
                   <label class="control-label">Stock In</label>
                   <div class="controls">
-                  <input id="text" type="text" name="stcokin" required="" />
+                  <input id="text" type="text" name="stockin" required="" />
+                  </div>
+              </div>
+                 <div class="control-group">
+                  <label class="control-label">Cost</label>
+                  <div class="controls">
+                  <input id="text" type="text" name="cost" required="" />
+                  </div>
+              </div>
+                 <div class="control-group">
+                  <label class="control-label">Selling Price</label>
+                  <div class="controls">
+                  <input id="text" type="text" name="price" required="" />
+                  </div>
+              </div>
+              <div class="control-group">
+                  <label class="control-label">Date</label>
+                  <div class="controls">
+                  <input id="text" type="date" name="datea" required="" />
                   </div>
               </div>
            
