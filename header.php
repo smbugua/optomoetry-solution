@@ -104,7 +104,7 @@ echo <<<HeaderFunction
         <li><a href="unpaidinvoices.php">UnPaid Invoices</a></li>
         <li><a href="partpaidinvoices.php">Partially Paid Invoices</a></li>
         <li><a href="paidinvoices.php">Paid Invoices</a></li>
-        <li><a href="cashflow.php">Cash Flow</a></li>
+        <li><a href="receipts.php">Receipts</a></li>
       </ul>
     </li>
     <!--li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Lab</span> <span class="label label-important">5</span></a>
