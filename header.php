@@ -117,7 +117,6 @@ echo <<<HeaderFunction
       <ul>
         <li><a href="products.php">Products</a></li>
         <li><a href="stocklevels.php">Stock</a></li>
-        <li><a href="receivestock.php">Receive Stock</a></li>
         <li><a href="itemtypes.php">Product Types</a></li>
         <li><a href="brands.php">Brands</a></li>
       </ul>
