@@ -49,8 +49,17 @@ if ($_GET['action']=="aadpatient") {
 	$date=$_POST['date'];
 	$patientid=$_REQUEST['patientid'];
 	$staffid=$_POST['staffid'];
-	$presciption=$_POST['prescription'];
+	$prescription=$_POST['prescription'];
 	$notes=$_POST['notes'];
+	$eye=$_POST['eye'];
+	$query="INSERT INTO contactlens(dateadded,patientid,staffid,prescription,notes,eye)VALUES('$date','$patientid','$staffid','$prescription','$notes','$eye')";
+	echo "<script>alert('Successfully Added!')</script>";
+	echo "<script>location.replace('patientoverview.php?id=$patientid')</script>";
+	mysql_query($query);
+	if (mysql_errno()) {
+		echo mysql_error();
+	}
+
 }elseif ($_GET['action']=="additemtype") {
 	$name=$_POST['name'];
 	mysql_query("INSERT INTO itemtype(name)values('$name')");

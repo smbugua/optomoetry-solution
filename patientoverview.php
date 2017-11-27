@@ -67,7 +67,7 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Patient Conact Lens</h5>
 
-            <a href="addcontactlens.php" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Contact Lens Record</i></a>
+            <a href="addcontactlens.php?id=<?php echo $id?>" class="btn btn-success btn-xs"><i class="icon icon-book ">Add Contact Lens Record</i></a>
           </div>
 
           <div class="widget-content nopadding">
@@ -76,9 +76,9 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
                 <tr>
                   <th>#</th>
                   <th>Eye</th>
-                  <th>Subjective RX</th>
                   <th>Prescription</th>
                   <th>Notes</th>
+                  <th>Logged By</th>
                   <th>Dateadded</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -93,11 +93,11 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
                 $no++;
                 ?>
                   <td><?php echo $no?></td>
-                  <td><?php echo $row['aye']?></td>
-                  <td><?php echo $row['subjectiverx']?></td>
+                  <td><?php echo $row['eye']?></td>
                   <td><?php echo $row['prescription']?></td>
                   <td><?php echo $row['notes']?></td>
-                  <td><?php echo $row['datecreated']?></td>                  
+                  <td><?php echo $row['staffid']?></td>
+                  <td><?php echo $row['dateadded']?></td>                  
                   <td><a href="editexam.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-edit"></i> Edit</a> </td>
                   <td><a href="actionclass.php?action=delete_exam&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
                 </tr>
