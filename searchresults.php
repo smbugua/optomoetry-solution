@@ -45,7 +45,7 @@ $exams=mysql_query("SELECT * FROM patients where idno='$idno' or tel='$phone'");
                   <td><?php echo $row['tel']?></td>
                   <td><?php echo $row['email']?></td>
                   <td><a href="patientoverview.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-edit"></i> Labs</a> </td>
-                  <td><a href="patientoverview.php?id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-money"></i> Bill</a> </td>
+                  <td><a href="billclient.php?id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-money"></i> Bill</a> </td>
                 </tr>
                 <?php }?>
               </tbody>
