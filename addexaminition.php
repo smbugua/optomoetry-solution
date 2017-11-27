@@ -30,7 +30,7 @@ $id=$_REQUEST['id']
                 <div class="control-group">
                   <label class="control-label">Subjective RX</label>
                   <div class="controls">
-                    <input id="text" type="text" name="idno" />
+                    <input id="text" type="text" name="subjectiverx" />
                   </div>
                 </div>
                 <div class="control-group">
@@ -38,14 +38,19 @@ $id=$_REQUEST['id']
                   <div class="controls">
                     <textarea name="notes" cols="7" rows="5"></textarea>
                   </div>
-                </div>
- 
+                </div> 
                 <div class="control-group">
                   <label class="control-label">Staff Assigned</label>
                   <div class="controls">
-                    <input id="text" type="text" readonly="" name="idno" value="<?php echo $user?>" />
+                    <input id="text" type="text" readonly="" name="staffid" value="<?php echo $user?>" />
                   </div>
-                </div>     
+                </div> 
+                <div class="control-group">
+                  <label class="control-label">Date</label>
+                  <div class="controls">
+                    <input type="date" name="date" value="<?php echo date('Y-m-d')?>">
+                  </div>
+                </div>    
               </div>
           
               <div class="form-actions">

@@ -31,13 +31,14 @@ if ($_GET['action']=="aadpatient") {
 }elseif ($_GET['action']=="addpatientexam") {
 	$date=$_POST['date'];
 	$patientid=$_REQUEST['patientid'];
+	$eye=$_POST['eye'];
 	$staffid=$_POST['staffid'];
 	$subjectiverx=$_POST['subjectiverx'];
 	$notes=$_POST['notes'];
-	$query="INSERT INTO patient_exams(date,patientid,staffid,subjectiverx,notes)VALUES('$date','$patientid','$staffid','$subjectiverx','$notes')";
+	$query="INSERT INTO patient_exams(dateadded,patientid,staffid,subjectiverx,notes,eye)VALUES('$date','$patientid','$staffid','$subjectiverx','$notes','$eye')";
 	mysql_query($query);
-
-	echo "<script>location.replace('patient_examinitions.php')</script>";
+	echo "<script>alert('Successfully Added!')</script>";
+	echo "<script>location.replace('patientoverview.php?id=$patientid')</script>";
 
 
 }elseif ($_GET['action']=="addcontactlens"){
