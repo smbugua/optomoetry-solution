@@ -110,11 +110,11 @@ $lens=mysql_query("SELECT * FROM contactlens where patientid='$id'");
     </div>
     <!-- Modals -->
 
+<?php include('footer.php');?>
 
 
   </div>
 
-<?php include('footer.php');?>
 </div>
 <!--Footer-part-->
 <!--end-Footer-part-->

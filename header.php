@@ -100,7 +100,7 @@ echo <<<HeaderFunction
     </li>
    <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Dispensing</span> <span class="label label-important">4</span></a>
       <ul>
-        <li><a href="billpatient.php">Add Invoice</a></li>
+        <li><a href="searchpatient.php">Add Invoice</a></li>
         <li><a href="unpaidinvoices.php">UnPaid Invoices</a></li>
         <li><a href="partpaidinvoices.php">Partially Paid Invoices</a></li>
         <li><a href="paidinvoices.php">Paid Invoices</a></li>
