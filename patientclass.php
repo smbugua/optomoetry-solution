@@ -66,9 +66,10 @@ if ($_GET['action']=="aadpatient") {
 	echo "<script>location.replace('itemtypes.php')</script>";
 }elseif ($_GET['action']=="addproduct") {
 	$name=$_POST['name'];
-	$brand=$_POST['brand'];
-	$item=$_POST['item'];
+	$brand=$_POST['brandid'];
+	$item=$_POST['productid'];
 	mysql_query("INSERT INTO products(productname,brandid,itemtypeid)values('$name','$brand','$item')");
+	echo "<script>alert('Successfully Added!')</script>";
 	echo "<script>location.replace('products.php')</script>";
 
 }elseif ($_GET['action']=="addbrand") {	
