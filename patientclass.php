@@ -97,7 +97,14 @@ if ($_GET['action']=="aadpatient") {
 	$psmid=$row['id'];
 	$newstock=$stock+$tot;
 	//update new stock levels
+	$stockquery=mysql_query("SELECT * FROM productstock where productid='$id'");
+	$no=mysql_num_rows($stockquery);
+	if ($no>0) {
+		
 	mysql_query("UPDATE productstock set totalstock ='$newstock' where productid='$id'");
+	}elseif ($no<=0) {
+	mysql_query("INSERT INTO productstock(productid,totalstock)VALUES('$id','$newstock')");
+	}
 	//record new prices in stock price
 	mysql_query("INSERT INTO stockprice(productid,stockid,cost,price,dateadded)values('$id','$psmid','$cost','$price','$date')");
 	echo "<script>alert('Successfully Added!')</script>";

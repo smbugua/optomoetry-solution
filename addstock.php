@@ -89,7 +89,7 @@ $no=mysql_num_rows($res);
               <div class="control-group">
                   <label class="control-label">Date</label>
                   <div class="controls">
-                  <input id="text" type="date" name="datea" required="" />
+                  <input id="text" type="date" name="datea" value="<?php echo date('Y-m-d')?>" required="" />
                   </div>
               </div>
            
