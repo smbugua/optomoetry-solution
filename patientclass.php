@@ -109,7 +109,7 @@ if ($_GET['action']=="aadpatient") {
 	//record new prices in stock price
 	mysql_query("INSERT INTO stockprice(productid,stockid,cost,price,dateadded)values('$id','$psmid','$cost','$price','$date')");
 	echo "<script>alert('Successfully Added!')</script>";
-	echo "<script>location.replace('productstock.php')</script>";
+	echo "<script>location.replace('stocklevels.php')</script>";
 }elseif ($_GET['action']=="stockout") {
 	$id=$_REQUEST['productid'];
 	$stock=$_POST['stock'];
