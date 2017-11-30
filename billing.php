@@ -7,9 +7,8 @@ $company_location=$main['main_location'];
 $company_tel=$main['main_tel'];
 $company_address=$main['main_address'];
 $email=$main['email'];
-$inv=mysql_fetch_array(mysql_query("SELECT count(id) as ids from invoices"));
-$count=$inv['ids'];
-$count2=$count+1;
+$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name from invoices i inner join patients p on p.id=i.patientid"));
+$count=$inv['invoicenumber'];
 $result=mysql_query("SELECT id,name from patients");
 ?>
 <div id="content-header">
@@ -51,41 +50,34 @@ $result=mysql_query("SELECT id,name from patients");
                   <tbody>
                     <tr>
                     <tr>
-                      <form action="actionclass.php?action=addinvoice" method="post">
+                      <form action="actionclass.php?action=addinvoiceitems" method="post">
                       <td class="width30">Invoice ID:</td>
-                      <td class="width70"><strong><input type="text" name="invoiceno" value="<?php echo "INV-".$count2."-".date('Y')?>" readonly=""></strong></td>
+                      <td class="width70"><strong><input type="text" name="invoiceno" value="<?php echo $count ?>" readonly=""></strong></td>
                     </tr>
                     <tr>
                       <td>Issue Date:</td>
-                      <td><strong><input type="date" name="dateadded" value="<?php echo date('Y-m-d')?>"></strong></td>
+                      <td><strong><input type="date" name="dateadded" value="<?php echo $inv['dateadded']?>" readonly=""></strong></td>
                     </tr>
                     <td class="width30">Patient:</td>
                     <td class="width70">
-                      <select name="patientid">
-                        <?php while($patient=mysql_fetch_array($result)) {?>
-                          <option value="<?php echo $patient[0]?>"><?php echo $patient[1] ?> </option>
-                        <?php }?>
-                      </select>
+                     <input type="text" name="name" value="<?php echo $inv['name']?>" readonly="">
 
                     </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td><button class="btn btn-primary pull-right" type="submit">Next</button></td>
                   </tr>
                     </tbody>
                   </form>
                 </table>
               </div>
             </div>
-            <!--div class="row-fluid">
+            <div class="row-fluid">
               <div class="span12">
                 <table class="table table-bordered table-invoice-full">
                   <thead>
                     <tr>
-                      <th class="head0">Type</th>
-                      <th class="head1">Desc</th>
-                      <th class="head0 right">Qty</th>
+                      <th class="head0">Porduct</th>
+                      <th class="head1">Product Type</th>
+                      <th class="head0 right">Brand</th>
+                      <th class="head0 right">Qty/th>
                       <th class="head1 right">Price</th>
                       <th class="head0 right">Amount</th>
                     </tr>
