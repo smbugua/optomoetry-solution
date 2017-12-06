@@ -104,9 +104,11 @@ $total=$inv['invoicetotal'];
                 </table>
                 <div class="pull-right">
                   <h4><span>Amount Due:</span><?php echo $total ?></h4>
-                  <br></div>
+                  <br>
+                  <a class="btn btn-primary btn-large pull-right" href="unpaidinvoices.php">Submit Invoice</a> </div></div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
