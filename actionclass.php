@@ -26,5 +26,46 @@ mysql_query("INSERT INTO invoiceitems(invoiceid,productid,unitprice,quantity,tot
 mysql_query("UPDATE invoices SET totalcost='$newtotl' where id='$id'");
 echo "<script>alert('Product Added!')</script>";
 echo "<script>location.replace('billing.php?id=$id')</script>";
+}elseif ($_GET['action']=="addpayment") {
+//get posted values
+$id=$_REQUEST['invoiceid'];
+$due=$_POST['due'];
+$ref=$_POST['ref'];
+$mode=$_POST['mode'];
+$bal=$_POST['bal'];
+$paid=$_POST['paid'];	
+$user=$_SESSION['user'];
+$date=date('Y-m-d');
+		// insert to receipts for each mode
+		/*
+		*1-MPesa Paybill
+		*2-Cheque
+		*3-Bank Ledger/Cash
+		*4-Insuarance
+		*/
+//INSERT INTO RECEIPTS
+if ($mode=="1") {
+mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,mpesa,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
+}elseif ($mode=="2") {
+mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,cheque,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
+
+}elseif ($mode=="3") {
+mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,bankledger,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
+
+}elseif ($mode=="4") {
+mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,insuarance,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
+}	
+//update invoice status 1 is partial 2 is fully paid
+		if ($bal>0) {
+			# code...
+			mysql_query("UPDATE invoices set status='1'where id='$id'");
+		}elseif ($bal<=0) {
+			mysql_query("UPDATE invoices set status='2'where id='$id'");
+
+		}
+
+echo "<script>alert('Payment Added!')</script>";
+		echo "<script>location.replace('receipts.php')</script>";
+
 }
 ?>

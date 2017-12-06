@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$query="SELECT r.id as id, p.name as name,inv.totalcost as tot ,r.amountpaid as amountpaid,r.balance as balance , r.paymentmethod as mode,r.refference as refference,r.dateadded as dateadded from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid order by r.dateadded DESC ";
+$query="SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amountpaid as amountpaid,r.balance as balance , pm.mode as mode,r.dateadded as dateadded from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid inner join paymentmodes pm on pm.id=r.paymentmethod order by r.datemodified DESC ";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
@@ -25,8 +25,7 @@ $result=mysql_query($query);
                   <th>Amount Due</th>
                   <th>Amount Paid</th>
                   <th>Balance</th>
-                  <th>Payment Mode</th>
-                  <th>Refference</th>
+                  <th>Payment Mode</th>s
                   <th>Datepaid</th>
                   <th>View</th>
                 </tr>
@@ -45,9 +44,8 @@ $result=mysql_query($query);
                   <td><?php echo $row['amountpaid']?></td>
                   <td><?php echo $row['balance']?></td>
                   <td><?php echo $row['mode']?></td>
-                  <td><?php echo $row['refference']?></td>
                   <td><?php echo $row['dateadded']?></td>                  
-                  <td><a href="receipt.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-camera-retro"></i> View</a> </td>
+                  <td><a href="smsreceipt.php?receiptid=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-phone-sign"></i> SMS</a> </td>
                 </tr>
                 <?php }?>
               </tbody>

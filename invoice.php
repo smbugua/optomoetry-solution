@@ -7,13 +7,14 @@ $company_location=$main['main_location'];
 $company_tel=$main['main_tel'];
 $company_address=$main['main_address'];
 $email=$main['email'];
-$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
+$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal ,i.status as status  from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
 $count=$inv['invoicenumber'];
 $result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
 
 $total=$inv['invoicetotal'];
 $tax=.16*$total;
 $subtotal=$total-$tax;
+$status=$inv['status'];
 
 ?>
 
@@ -120,8 +121,16 @@ $subtotal=$total-$tax;
                 <div class="pull-right">
                   <h4><span>Amount Due:</span><?php echo $total ?></h4>
                   <br>
-
-                  <a class="btn btn-primary btn-large pull-right" href="payinvoice.php">Pay Invoice</a> </div></div>
+                    <?php if($status!="2"){?>
+                    <a href="#myAlert" data-toggle="modal" class="btn btn-danger btn-large pull-right"><i class="icon icon-money"></i> Pay Invoice</a> 
+                    <?php 
+                  }elseif ($status=="2") {?>
+                     <div class="alert alert-success alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">Paid Invoice!</h4>
+              Invoice is already Paid</div>
+                  <?php }?>
+                     </div>
+                   </div>
               </div>
             </div>
 
@@ -137,28 +146,53 @@ $subtotal=$total-$tax;
 </div>
 <!--end-Footer-part--> 
 
+<?php
+//balances
+$b=mysql_fetch_array(mysql_query("SELECT balance from receipts where invoiceid='$id' order by datemodified desc limit 1"));
+$bal=$b['balance'];
+$checker=mysql_fetch_array(mysql_query("SELECT i.status as status,totalcost FROM  invoices i where i.id='$id' "));
+$statuscheck=$checker['status'];
+$totaldue=$checker['totalcost'];
+
+?>
+
 <!-- modal -->
 
         <div id="myAlert" class="modal hide">
               <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button">×</button>
-                <h3>Add Billing Item</h3>
+                <h3>Add Payment Details</h3>
               </div>
 
               <div class="modal-body">
-                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>">
+                <form method="post" action="actionclass.php?action=addpayment&&invoiceid=<?php echo $id?>">
                    <div class="control-group">
-                  <label class="control-label">Product</label>
+                  <label class="control-label">Payment Method</label>
                   <div class="controls">
-                    <select name="product" class="form-control">
+                    <select name="mode" class="form-control">
                     <?php
-                    $productresult=mysql_query("SELECT id,productname from products");
+                    $productresult=mysql_query("SELECT id,mode from paymentmodes");
                     while($productrow=mysql_fetch_array($productresult)){
                     ?>  
                     <option value="<?php echo $productrow[0]?>"><?php echo $productrow[1]?></option>
                     <?php }?> 
                     </select>
-                    <input type="text" name="quantity" class="form-control">
+                    <label>Amount Due</label>
+                    <?php
+                    if ($statuscheck=="0") {
+                    ?> 
+                    <input type="text" id="due" name="due" class="form-control" readonly="" value="<?php echo $totaldue?>">
+                    <?php }
+                    elseif($statuscheck=="1") {?>
+
+                    <input type="text" id="due" name="due" class="form-control" readonly="" value="<?php echo $bal?>">
+                    <?php }?>
+                    <label>Amount Paid</label>
+                    <input type="text" name="paid" id="paid" class="form-control" onkeyup="calc()" required="true">
+                    <label>Balance</label>
+                    <input type="text" name="bal" id="bal" min="0" class="form-control" readonly="">
+                    <label>Refference</label>
+                    <input type="text" name="ref" class="form-control" required="true">
                    </div>
                 </div>
               
@@ -167,12 +201,25 @@ $subtotal=$total-$tax;
               <div class="modal-footer"> <button type="submit" class="btn btn-primary" >Confirm</button> </div>
             </div>
 
+
+
 <script src="js/jquery.min.js"></script> 
 <script src="js/jquery.ui.custom.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/jquery.peity.min.js"></script> 
 <script src="js/matrix.interface.js"></script> 
 <script src="js/matrix.popover.js"></script>
+
+<script type="text/javascript">
+  function calc() {
+    var due=document.getElementById('due').value;
+    var paid=document.getElementById('paid').value;
+    document.getElementById('bal').value=parseInt(due)-parseInt(paid);
+
+  }
+
+</script>
+
 </body>
 
 </html>
