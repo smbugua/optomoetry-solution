@@ -7,10 +7,14 @@ $company_location=$main['main_location'];
 $company_tel=$main['main_tel'];
 $company_address=$main['main_address'];
 $email=$main['email'];
-$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name from invoices i inner join patients p on p.id=i.patientid"));
+$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
 $count=$inv['invoicenumber'];
-$result=mysql_query("SELECT id,name from patients");
+$result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
+
+$total=$inv['invoicetotal'];
+
 ?>
+
 <div id="content-header">
     <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Billing</a> <a href="#" class="current">invoice</a> </div>
     <h1>Invoice</h1>
@@ -73,71 +77,34 @@ $result=mysql_query("SELECT id,name from patients");
               <div class="span12">
                 <table class="table table-bordered table-invoice-full">
                   <thead>
+                   <a href="#myAlert" data-toggle="modal" class="btn btn-success pull-right"><i class="icon icon-plus"></i> Add Item</a> 
+                    
                     <tr>
                       <th class="head0">Porduct</th>
                       <th class="head1">Product Type</th>
                       <th class="head0 right">Brand</th>
-                      <th class="head0 right">Qty/th>
+                      <th class="head0 right">Qty</th>
                       <th class="head1 right">Price</th>
                       <th class="head0 right">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
+                      <?php while($row=mysql_fetch_array($result)){?>
                     <tr>
-                      <td>Firefox</td>
-                      <td>Ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae</td>
-                      <td class="right">2</td>
-                      <td class="right">$150</td>
-                      <td class="right"><strong>$300</strong></td>
+                      <th class="right"><?php echo $row[0]?></th>
+                      <th class="right"><?php echo $row[1]?></th>
+                      <th class="right"><?php echo $row[2]?></th>
+                      <th class="right"><?php echo $row[3]?></th>
+                      <th class="right"><?php echo $row[4]?></th>
+                      <th class="right"><?php echo $row[5]?></th>
                     </tr>
-                    <tr>
-                      <td>Chrome Plugin</td>
-                      <td>Tro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt u eos et accusamus et iusto odio dignissimos ducimus  deleniti atque</td>
-                      <td class="right">1</td>
-                      <td class="right">$1,200</td>
-                      <td class="right"><strong>$1,2000</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Safari App</td>
-                      <td>Rro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt u expedita distinctio</td>
-                      <td class="right">2</td>
-                      <td class="right">$850</td>
-                      <td class="right"><strong>$1,700</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Opera App</td>
-                      <td>Orro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut</td>
-                      <td class="right">3</td>
-                      <td class="right">$850</td>
-                      <td class="right"><strong>$2,550</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Netscape Template</td>
-                      <td>Vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</td>
-                      <td class="right">5</td>
-                      <td class="right">$50</td>
-                      <td class="right"><strong>$250</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table table-bordered table-invoice-full">
-                  <tbody>
-                    <tr>
-                      <td class="msg-invoice" width="85%"><h4>Payment method: </h4>
-                        <a href="#" class="tip-bottom" title="Wire Transfer">Wire transfer</a> |  <a href="#" class="tip-bottom" title="Bank account">Bank account #</a> |  <a href="#" class="tip-bottom" title="SWIFT code">SWIFT code </a>|  <a href="#" class="tip-bottom" title="IBAN Billing address">IBAN Billing address </a></td>
-                      <td class="right"><strong>Subtotal</strong> <br>
-                        <strong>Tax (5%)</strong> <br>
-                        <strong>Discount</strong></td>
-                      <td class="right"><strong>$7,000 <br>
-                        $600 <br>
-                        $50</strong></td>
-                    </tr>
+                    <?php }?>
+                    
                   </tbody>
                 </table>
                 <div class="pull-right">
-                  <h4><span>Amount Due:</span> $7,650.00</h4>
-                  <br>
-                  <a class="btn btn-primary btn-large pull-right" href="">Pay Invoice</a> </div>
+                  <h4><span>Amount Due:</span><?php echo $total ?></h4>
+                  <br></div>
               </div>
             </div>
           </div>
@@ -151,8 +118,43 @@ $result=mysql_query("SELECT id,name from patients");
 <?php include('footer.php') ?>
 </div>
 <!--end-Footer-part--> 
+
+<!-- modal -->
+
+        <div id="myAlert" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Add Billing Item</h3>
+              </div>
+
+              <div class="modal-body">
+                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>">
+                   <div class="control-group">
+                  <label class="control-label">Product</label>
+                  <div class="controls">
+                    <select name="product" class="form-control">
+                    <?php
+                    $productresult=mysql_query("SELECT id,productname from products");
+                    while($productrow=mysql_fetch_array($productresult)){
+                    ?>  
+                    <option value="<?php echo $productrow[0]?>"><?php echo $productrow[1]?></option>
+                    <?php }?> 
+                    </select>
+                    <input type="text" name="quantity" class="form-control">
+                   </div>
+                </div>
+              
+                  
+                </div>
+              <div class="modal-footer"> <button type="submit" class="btn btn-primary" >Confirm</button> </div>
+            </div>
+
 <script src="js/jquery.min.js"></script> 
 <script src="js/jquery.ui.custom.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+<script src="js/matrix.interface.js"></script> 
+<script src="js/matrix.popover.js"></script>
 </body>
+
 </html>
