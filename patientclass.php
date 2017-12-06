@@ -115,7 +115,16 @@ if ($_GET['action']=="aadpatient") {
 	$stock=$_POST['stock'];
 	mysql_query("INSERT INTO productstockmoves(productid,stockmove,type)values('$id','$stock','1')");
 	echo "<script>location.replace('productstock.php')</script>";
+}elseif ($_GET['action']=="addappointment") {
+	$id=$_POST['patientid'];
+	$date=$_POST['datescheduled'];
+	$type=$_POST['type'];
+	$notes=$_POST['notes'];
+	mysql_query("INSERT INTO appointments(patientid,notes,type,datescheduled)values('$id','$notes','$type','$date')");
+	echo "<script>alert('Successfully Added!')</script>";
+	echo "<script>location.replace('appointments.php')</script>";
 }
+
 
 
 

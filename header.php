@@ -101,7 +101,7 @@ echo <<<HeaderFunction
     <li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Reception</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="appointments.php">Apppointments</a></li>
-        <li><a href="recallls.php">Recalls</a></li>
+        <!--li><a href="recallls.php">Recalls</a></li-->
       </ul>
     </li>
    <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Dispensing</span> <span class="label label-important"></span></a>
